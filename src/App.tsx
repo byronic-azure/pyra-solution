@@ -6,6 +6,7 @@ import ThreatIntel from './pages/ThreatIntel'
 import Tools from './pages/Tools'
 import Services from './pages/Services'
 import About from './pages/About'
+import JaHRule from './pages/JaHRule'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/threat-intel" element={<ThreatIntel />} />
         <Route path="/tools" element={<Tools />} />
+        <Route path="/jah-rule" element={<JaHRule />} />
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
       </Routes>
