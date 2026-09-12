@@ -8,6 +8,7 @@ const navLinks = [
   { path: '/dashboard', label: 'Dashboard' },
   { path: '/threat-intel', label: 'Threat Intel' },
   { path: '/tools', label: 'Tools' },
+  { path: '/jah-rule', label: 'JaH Rule' },
   { path: '/services', label: 'Services' },
   { path: '/about', label: 'About' },
 ]
