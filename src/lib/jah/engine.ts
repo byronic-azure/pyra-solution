@@ -187,6 +187,42 @@ export class JaHEngine {
     this.log('mos', `${target.name} dispatched at ${(target.load * 100).toFixed(0)}% load.`)
   }
 
+  private startLoop() {
+    if (this.loop) return
+    this.loop = setInterval(() => this.step(), 250)
+  }
+
+  private step() {
+    if (!this.alive()) return
+    const current = this.state
+    let converged = false
+    const specialists = current.specialists.map(sp => {
+      if (sp.state !== 'RUNNING') return sp
+      const next = sp.progress + sp.load * 0.045 * (0.7 + Math.random() * 0.6)
+      if (next >= 1) {
+        converged = true
+        return { ...sp, progress: 1, state: 'CONVERGED' as SpecialistState }
+      }
+      return { ...sp, progress: next }
+    })
+    let coherence = current.coherence
+    if (converged) {
+      const count = specialists.filter(sp => sp.state === 'CONVERGED' || sp.state === 'ANCHORED').length
+      coherence = clamp(0.42 + 0.085 * count + (Math.random() - 0.5) * 0.015, 0, 0.94)
+      const staged = specialists.find(sp => sp.state === 'CONVERGED')
+      if (staged) this.log('mos', `${staged.name} converged. artifact staged at the JaH gate.`)
+    }
+    const anyRunning = specialists.some(sp => sp.state === 'RUNNING')
+    const daemon: DaemonState = anyRunning ? 'ENFORCING' : current.daemon === 'ENFORCING' ? 'ACTIVE' : current.daemon
+    this.set({
+      specialists,
+      coherence,
+      cScore: C_OPTIMAL * (coherence / PHI_GATE),
+      uptime: current.uptime + 0.25,
+      daemon,
+    })
+  }
+
   measure() {
     if (!this.alive()) return
     const staged = this.state.specialists.some(sp => sp.state === 'CONVERGED')

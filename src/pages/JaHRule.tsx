@@ -278,7 +278,7 @@ export default function JaHRule() {
                   }}
                   disabled={locked}
                   placeholder="state what the swarm must invent"
-                  className="flex-1 rounded-lg border border-cyber-border bg-cyber-dark px-4 py-2.5 text-sm text-white placeholder:text-gray-600 focus:border-cyber-blue/60 focus:outline-none focus:ring-1 focus:ring-cyber-blue/40 disabled:opacity-70"
+                  className="flex-1 rounded-lg border border-cyber-border bg-cyber-dark px-4 py-2.5 text-sm text-white placeholder:text-gray-500 focus:border-cyber-blue/60 focus:outline-none focus:ring-1 focus:ring-cyber-blue/40 disabled:opacity-70"
                 />
                 {locked ? (
                   <div className="flex gap-3">
@@ -370,7 +370,7 @@ export default function JaHRule() {
                   <span className="text-gray-400">C {C_CRITICAL.toFixed(2)}</span>
                 </div>
               </div>
-              <p className="mt-4 border-t border-cyber-border pt-3 font-mono text-[10px] leading-relaxed text-gray-600">
+              <p className="mt-4 border-t border-cyber-border pt-3 font-mono text-[10px] leading-relaxed text-gray-500">
                 S(t+1) = S(t) + n1*SUM w(Sj - Si) + n2*GRAD q. Telemetry is simulated in-browser.
               </p>
             </motion.div>
@@ -443,7 +443,7 @@ export default function JaHRule() {
                   <ScrollText size={12} /> seal chain
                 </div>
                 {state.seals.length === 0 ? (
-                  <div className="font-mono text-[11px] text-gray-600">genesis {'0'.repeat(16)}...</div>
+                  <div className="font-mono text-[11px] text-gray-500">genesis {'0'.repeat(16)}...</div>
                 ) : (
                   <ul className="space-y-1.5">
                     {state.seals
@@ -489,7 +489,7 @@ export default function JaHRule() {
                   <div className="mt-0.5 text-white">{state.policy.updates}</div>
                 </div>
               </div>
-              <p className="mt-3 font-mono text-[10px] leading-relaxed text-gray-600">
+              <p className="mt-3 font-mono text-[10px] leading-relaxed text-gray-500">
                 Every seal trains the policy: reward follows coherence against the PHI gate.
               </p>
               <div
@@ -498,11 +498,11 @@ export default function JaHRule() {
                 className="mt-4 h-44 overflow-y-auto rounded-lg border border-cyber-border bg-cyber-dark p-3 font-mono text-[11px] leading-relaxed"
               >
                 {state.events.length === 0 ? (
-                  <div className="text-gray-600">daemon dormant. events will stream here.</div>
+                  <div className="text-gray-500">daemon dormant. events will stream here.</div>
                 ) : (
                   state.events.map(event => (
                     <div key={event.id} className="flex gap-2">
-                      <span className="shrink-0 text-gray-600">{fmtClock(event.at)}</span>
+                      <span className="shrink-0 text-gray-500">{fmtClock(event.at)}</span>
                       <span className={EVENT_COLOR[event.kind]}>{event.text}</span>
                     </div>
                   ))
@@ -515,7 +515,7 @@ export default function JaHRule() {
 
       {/* Evidence strip */}
       <section className="relative z-10 border-t border-cyber-border py-6">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 font-mono text-[10px] uppercase tracking-[0.2em] text-gray-600 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500 sm:px-6 lg:px-8">
           <span>DOI 10.5281/zenodo.18910246</span>
           <span>PCT/EP2025/080977</span>
           <span>DD7 International GmbH</span>
